@@ -86,9 +86,7 @@ for game_link in list_game_url:
     game_df['Id'] = [game_id]
     game_df['Title'] = [game_title[1:]]
 
-    if len(game_get_times)<=0:
-        break
-    else:
+    if len(game_get_times)>0:
 
         game_time_list = game_get_times[0].select('li')
 
