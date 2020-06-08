@@ -118,18 +118,17 @@ for game_link in list_game_url:
     
     if len(noStarchSoup.select('div.game_chart > h5')) > 0:
         game_rating = noStarchSoup.select('div.game_chart > h5')[0].getText()[:-8]
-    else:
-        game_rating=''
-        
-    if len(noStarchSoup.select('div.game_chart > h5')[1]) > 0:
         game_retired = noStarchSoup.select('div.game_chart > h5')[1]
-
-        # some bad '\br' things going on, so replace and then strip.
         for br in game_retired.select('br'):
             br.replace_with(', ')
         game_retired=game_retired.getText().split(',')[1][:-1]
+
     else:
+        game_rating=''
         game_retired=''
+
+        # some bad '\br' things going on, so replace and then strip.
+
 
     game_df['Rating']=game_rating
     game_df['Retired'] = game_retired
