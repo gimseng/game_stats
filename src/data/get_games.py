@@ -33,6 +33,7 @@ list_game_url=[]
 
 print(datetime.datetime.now(),": Getting Id ...")
 for page_id in page_range:
+  print(page_id, "/", max_page)
 
   SEARCH_URL = BASE_URL + "search_results?page="+str(page_id)
 
@@ -70,6 +71,7 @@ print(datetime.datetime.now(), ": Starting to loop through games ... There are "
 
 for game_link in list_game_url:
     print(count, " out of ",dim)
+    count+=1
     game_df = pd.DataFrame()
 
     game_id=game_link.split('=')[1]
@@ -97,26 +99,37 @@ for game_link in list_game_url:
 	    # There are two time formats: 'Mins' and 'Hours'.
 	    # If 'Mins', strip and convert into a fraction of hours, but convert back to string for consistency.
 	    # If 'Hours', just strip.
-        game_time_value_type=game_time_value.split()[-1]
-        game_time_actual_value = game_time_value.split()[0]
+        
+        if len(game_time_value.split())>0:
+            game_time_value_type=game_time_value.split()[-1]
+            game_time_actual_value = game_time_value.split()[0]
 
-        if game_time_value_type == "Hours" or game_time_value_type=='h':
-            new_game_time_value = game_time_actual_value
-        elif game_time_value_type=="Mins":
-            new_game_time_value = float(game_time_actual_value)/60.0
+            if game_time_value_type == "Hours" or game_time_value_type=='h':
+                new_game_time_value = game_time_actual_value
+            elif game_time_value_type=="Mins":
+                new_game_time_value = float(game_time_actual_value)/60.0
+            else:
+                game_time_value_type="Unknown"
+                new_game_time_value = game_time_value
         else:
-            game_time_value_type="Unknown"
             new_game_time_value = game_time_value
 
         game_df[game_time_type] = [new_game_time_value]
     
-    game_rating = noStarchSoup.select('div.game_chart > h5')[0].getText()[:-8]
-    game_retired = noStarchSoup.select('div.game_chart > h5')[1]
+    if len(noStarchSoup.select('div.game_chart > h5')) > 0:
+        game_rating = noStarchSoup.select('div.game_chart > h5')[0].getText()[:-8]
+    else:
+        game_rating=''
+        
+    if len(noStarchSoup.select('div.game_chart > h5')[1]) > 0:
+        game_retired = noStarchSoup.select('div.game_chart > h5')[1]
 
-    # some bad '\br' things going on, so replace and then strip.
-    for br in game_retired.select('br'):
-        br.replace_with(', ')
-    game_retired=game_retired.getText().split(',')[1][:-1]
+        # some bad '\br' things going on, so replace and then strip.
+        for br in game_retired.select('br'):
+            br.replace_with(', ')
+        game_retired=game_retired.getText().split(',')[1][:-1]
+    else:
+        game_retired=''
 
     game_df['Rating']=game_rating
     game_df['Retired'] = game_retired
