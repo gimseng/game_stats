@@ -86,52 +86,55 @@ for game_link in list_game_url:
     game_df['Id'] = [game_id]
     game_df['Title'] = [game_title[1:]]
 
-    game_time_list = game_get_times[0].select('li')
-
-    for game_time in game_time_list:
-        #print(game_title,game_time)
-        game_time_type = game_time.select('h5')[0].getText()#+" (Hours)"
-        game_time_value = game_time.select('div')[0].getText()
-
-	    # Strip all spaces, replace '--' with 'NA', replace '1/2' with '.5'.
-        game_time_value = game_time_value.replace('--', '').replace('½', '.5')
-
-	    # There are two time formats: 'Mins' and 'Hours'.
-	    # If 'Mins', strip and convert into a fraction of hours, but convert back to string for consistency.
-	    # If 'Hours', just strip.
-        
-        if len(game_time_value.split())>0:
-            game_time_value_type=game_time_value.split()[-1]
-            game_time_actual_value = game_time_value.split()[0]
-
-            if game_time_value_type == "Hours" or game_time_value_type=='h':
-                new_game_time_value = game_time_actual_value
-            elif game_time_value_type=="Mins":
-                new_game_time_value = float(game_time_actual_value)/60.0
-            else:
-                game_time_value_type="Unknown"
-                new_game_time_value = game_time_value
-        else:
-            new_game_time_value = game_time_value
-
-        game_df[game_time_type] = [new_game_time_value]
-    
-    if len(noStarchSoup.select('div.game_chart > h5')) > 0:
-        game_rating = noStarchSoup.select('div.game_chart > h5')[0].getText()[:-8]
-        game_retired = noStarchSoup.select('div.game_chart > h5')[1]
-        for br in game_retired.select('br'):
-            br.replace_with(', ')
-        game_retired=game_retired.getText().split(',')[1][:-1]
-
+    if len(game_get_times)<=0:
+        break
     else:
-        game_rating=''
-        game_retired=''
 
-        # some bad '\br' things going on, so replace and then strip.
+        game_time_list = game_get_times[0].select('li')
+
+        for game_time in game_time_list:
+            #print(game_title,game_time)
+            game_time_type = game_time.select('h5')[0].getText()#+" (Hours)"
+            game_time_value = game_time.select('div')[0].getText()
+
+            # Strip all spaces, replace '--' with 'NA', replace '1/2' with '.5'.
+            game_time_value = game_time_value.replace('--', '').replace('½', '.5')
+
+            # There are two time formats: 'Mins' and 'Hours'.
+            # If 'Mins', strip and convert into a fraction of hours, but convert back to string for consistency.
+            # If 'Hours', just strip.
+            
+            if len(game_time_value.split())>0:
+                game_time_value_type=game_time_value.split()[-1]
+                game_time_actual_value = game_time_value.split()[0]
+
+                if game_time_value_type == "Hours" or game_time_value_type=='h':
+                    new_game_time_value = game_time_actual_value
+                elif game_time_value_type=="Mins":
+                    new_game_time_value = float(game_time_actual_value)/60.0
+                else:
+                    game_time_value_type="Unknown"
+                    new_game_time_value = game_time_value
+            else:
+                new_game_time_value = game_time_value
+
+            game_df[game_time_type] = [new_game_time_value]
+        
+        if len(noStarchSoup.select('div.game_chart > h5')) > 0:
+            game_rating = noStarchSoup.select('div.game_chart > h5')[0].getText()[:-8]
+            game_retired = noStarchSoup.select('div.game_chart > h5')[1]
+            for br in game_retired.select('br'):
+                br.replace_with(', ')
+            game_retired=game_retired.getText().split(',')[1][:-1]
+        else:
+            game_rating=''
+            game_retired=''
+
+            # some bad '\br' things going on, so replace and then strip.
 
 
-    game_df['Rating']=game_rating
-    game_df['Retired'] = game_retired
+        game_df['Rating']=game_rating
+        game_df['Retired'] = game_retired
 
     # to be done
     """ publisher et al info 
