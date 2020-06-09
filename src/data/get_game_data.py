@@ -2,78 +2,31 @@ import requests, bs4
 import pandas as pd
 import datetime
 
-BASE_URL = 'https://howlongtobeat.com/'
-game_name=""
-
-headers = {
-            'content-type': 'application/x-www-form-urlencoded',
-            'accept': '*/*'
-        }
-payload = {
-    'queryString': game_name,
-    't': 'games',
-    'sorthead': 'popular',
-    'sortd': 'Normal Order',
-    'plat': '',
-    'length_type': 'main',
-    'length_min': '',
-    'length_max': '',
-    'detail': '0'
-}
-
-min_page = 1
-max_page = 2037
-#2037
-#manually searching https://howlongtobeat.com/#search2037 is ok but 2038 is not ok
-#
-
-page_range = range(min_page, max_page+1)
-
-list_game_url=[]
-
-print(datetime.datetime.now(),": Getting Id ...")
-for page_id in page_range:
-  print(page_id, "/", max_page)
-
-  SEARCH_URL = BASE_URL + "search_results?page="+str(page_id)
-
-  # Make the post request and return the result if is valid
-  r = requests.post(SEARCH_URL, data=payload, headers=headers)
-  game_path="https://howlongtobeat.com/"
-
-  if r is not None and r.status_code == 200:
-    soup=bs4.BeautifulSoup(r.text,'html.parser')
-    games =soup.select('div.search_list_image > a')
-    #print(page_id,games[0].get('aria-label'))
-
-    for game in games:
-      #print(game,'\n\n')
-      game_id=game.get('href')
-      game_link = game_path+game_id
-      list_game_url.append(game_link)
-      #print(game,"\n\n",game_id, ":", game.get('div'))
-
-  else:
-    print(r.status_code)
-
-print(datetime.datetime.now(), ": Game URLs writing to list_game_url.csv ...")
-
-game_url_df = pd.DataFrame(list_game_url)
-game_url_df.to_csv('list_game_url.csv', sep=',', header=None, index=None)
-
+SAVE_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/raw/'
 
 all_game_df=pd.DataFrame()
+count = 1
 
-count=0
+start_time = datetime.datetime.now()
+
+
+list_game_df = pd.read_pickle(SAVE_FILE_PATH+"list_game_url.pkl")
+list_game_url = list_game_df.values.tolist()
+
 dim = len(list_game_url)
+print("Starting time at : {}. Starting to loop through games ... There are {} number of games.".format(
+    start_time.strftime("%Y-%m-%d, %H:%M"), dim))
 
-print(datetime.datetime.now(), ": Starting to loop through games ... There are ", dim, " number of games ...")
-
-for game_link in list_game_url:
-    print(count, " out of ",dim)
+for game_link_pre in list_game_url:
+    game_link=game_link_pre[0]
+    if count % 100 == 0:
+        timesince = datetime.datetime.now() - start_time
+        minutessince = int(float(timesince.total_seconds() / 60))
+        print_str = "Total time so far: {} mins. Progress: {} % ({} / {})".format(str(minutessince), str(int(100*(count+1)/len(list_game_url))), str(count), str(len(list_game_url)))
+        print("\r {}".format(print_str), end="")
     count+=1
-    game_df = pd.DataFrame()
 
+    game_df = pd.DataFrame()
     game_id=game_link.split('=')[1]
 
     res=requests.get(game_link)
@@ -135,21 +88,8 @@ for game_link in list_game_url:
         game_df['Retired'] = game_retired
 
     # to be done
-    """ publisher et al info 
-
-    		# Profile (game information).
-		profile = {
-			'Type': '',
-			'Developers': '', # includes both 'Developer' and 'Developers'
-			'Publishers': '', # includes both 'Publisher' and 'Publishers'
-			'Playable On': '',
-			'Genres': '', # includes both 'Genre' and 'Genres'
-			'NA': '',
-			'EU': '',
-			'JP': ''
-		}
-
-    """
+    
+    
 
     all_game_df = pd.concat([all_game_df, game_df],
                             sort=False, ignore_index=True)
@@ -158,7 +98,8 @@ all_game_df.sort_values('Title', inplace=True)
 all_game_df.reset_index(inplace=True)
 
 
-print(all_game_df)
-
-all_game_df.to_csv('all-games.csv', index=None)
 print(datetime.datetime.now(), ": DONE !")
+
+all_game_df.to_csv(SAVE_FILE_PATH+'all_game_df.csv', sep=',', header=None, index=None)
+all_game_df.to_pickle(SAVE_FILE_PATH+'all_game_df.pkl')
+
