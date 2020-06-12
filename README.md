@@ -11,7 +11,7 @@ Welcome to my gameplay data analysis project (which I call game_stats). In this 
 
 ## Get Data
 
-For data, it is fortunate to have the [HLTB website](www.howlongtobeat.com)  that allow users to log playtime and provide ratings. At the time of writing (mid Jun, 2020), the website boasts to contain data for 40k games with 200k users. This is not a lot in the big data world, however, as far as data analysis goes, this is a good start.
+For data, it is fortunate to have the [HLTB website](https://www.howlongtobeat.com) which allow users to log playtime and provide ratings. At the time of writing (mid Jun, 2020), the website boasts to contain data for 40k games with 200k users. This is not a lot in the big data world, however, as far as data analysis goes, this is a good start.
 
 For data ETL, I rely heavily Python [requests](https://pypi.org/project/requests/) and [bs4](https://pypi.org/project/beautifulsoup4/) packages to scrap www.howlongtobeat.com. Also important is the use of 'Inspect' function on Chrome browser to reverse-engineering the data that I need. Since the robots.txt of the website permits all scraping of publicly available data, I am free to do so. I will like to thank the www.howlongtobeat.com website for maintaining such a fantastic website and also allowing free scraping of their data.
 
