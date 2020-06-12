@@ -1,6 +1,6 @@
 # game_stats
 
-Welcome to my gameplay data analysis project (which I call game_stats). In this project, we will be doing an end-to-end data science project, involving perhaps a few data engineering/machine learning modeling task. I am structuring the project in the following ways.
+Welcome to my gameplay data analysis project (which I call game_stats). In this project, we will be doing an end-to-end data science project, involving perhaps a few data engineering/machine learning modeling task. I am structuring the project in the following ways. I provide a quick summary for some parts, with further documentations (linked when needed) in the docs folder for further technical details.
 
 ## Strategy, Big Picture/Project Motivation, Problem Statement and Project Goals
 1. Define the business objectives and gameplans.
@@ -10,9 +10,14 @@ Welcome to my gameplay data analysis project (which I call game_stats). In this 
 5. Assumptions?
 
 ## Get Data
-1. Legality and permission?
-2. Extract, transform and load (ETL)
-3. If needed, build database and pipeline/API access for later steps.
+For this step, I rely heavily Python [requests](https://pypi.org/project/requests/) and [bs4](https://pypi.org/project/beautifulsoup4/) packages to scrap www.howlongtobeat.com . Most importantly is the use of 'Inspect' function on Chrome browser to reverse-engineering the data that I need. 
+
+Since the robots.txt of the website permits all scraping of publicly available data, I am free to do so. I will like to thank the www.howlongtobeat.com website for maintaining such a fantastic website and also allowing free scraping of their data.
+
+The end results are  csv files in [data/raw](data/raw). The important ones (for next stage) are: all_game.csv, all_play.csv and all_user.csv. The all_game.csv contains all information related to each such as developer and release dates. The all_user.csv contains all user information (including gender, age and locaitons) while the all_play.csv contains user-provided gameplay information (like playtimes, ratings and platforms).
+
+For more
+
 
 ## Explore Data 
 1. Create a copy for exploration
