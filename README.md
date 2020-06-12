@@ -10,7 +10,7 @@ Welcome to my gameplay data analysis project (which I call game_stats). In this 
 5. Assumptions?
 
 ## Get Data
-For this step, I rely heavily Python [requests](https://pypi.org/project/requests/) and [bs4](https://pypi.org/project/beautifulsoup4/) packages to scrap www.howlongtobeat.com . Most importantly is the use of 'Inspect' function on Chrome browser to reverse-engineering the data that I need. 
+For this step, I rely heavily Python [requests](https://pypi.org/project/requests/) and [bs4](https://pypi.org/project/beautifulsoup4/) packages to scrap www.howlongtobeat.com. Also important is the use of 'Inspect' function on Chrome browser to reverse-engineering the data that I need. 
 
 Since the robots.txt of the website permits all scraping of publicly available data, I am free to do so. I will like to thank the www.howlongtobeat.com website for maintaining such a fantastic website and also allowing free scraping of their data.
 
