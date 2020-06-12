@@ -63,12 +63,22 @@ for game_link_pre in list_game_url[:1]:
 
     SEARCH_URL = BASE_URL + "user_games_detail"
 
-    for play_id in play_id_list[:2]:
+    for play_id in play_id_list[:1]:
         payload = {'option': play_id}
         #Make the post request and return the result if is valid
         r = requests.post(SEARCH_URL, data=payload, headers=headers)
         soup = bs4.BeautifulSoup(r.text, 'html.parser')
+        print(play_id,":",type(soup))
         print(soup)
+
+        for element in soup.select('div>h5'):
+            print("XX", element.getText())
+        for element in soup.select('div>div'):
+            print("YY", element.getText())
+        for element in soup.select('div>p'):
+            print("ZZ", element.getText())
+        #for element in soup.select('h5'):
+        #   print(element.getText())
 
     # to do: (1) loop thru all play_id, then pick out all the data
     # (2) store them in a dataframe
