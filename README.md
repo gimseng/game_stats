@@ -18,7 +18,7 @@ For data ETL, I rely heavily Python [requests](https://pypi.org/project/requests
 
 The end results are  csv files in [data/raw](data/raw). The important ones (for next stage) are: [all_game.csv](data/raw/all_game.csv), [all_play.csv](data/raw/all_play.csv) and [all_user.csv](data/raw/all_usercsv). The [all_game.csv](data/raw/all_game.csv) file contains all information related to each such as developer and release dates. Meanwhile, the [all_user.csv](data/raw/all_user.csv) file contains all user information (including gender, age and locaitons) while the [all_play.csv](data/raw/all_play.csv) file contains user-provided gameplay information (like playtimes, ratings and platforms). The details of the data will be discussed in the next few sections.
 
-
+#BEWARE: Below are work in progress
 
 ## Explore Data 
 1. Create a copy for exploration
