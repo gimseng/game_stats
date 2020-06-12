@@ -1,6 +1,6 @@
 # game_stats
 
-Welcome to my gameplay data analysis project (which I call game_stats). In this project, we will be doing an end-to-end data science project, involving perhas a few data engineering/machine learning modeling task. I am structuring the project in the following ways.
+Welcome to my gameplay data analysis project (which I call game_stats). In this project, we will be doing an end-to-end data science project, involving perhaps a few data engineering/machine learning modeling task. I am structuring the project in the following ways.
 
 ## Strategy, Big Picture/Project Motivation, Problem Statement and Project Goals
 1. Define the business objectives and gameplans.
