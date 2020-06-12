@@ -14,7 +14,7 @@ For this step, I rely heavily Python [requests](https://pypi.org/project/request
 
 Since the robots.txt of the website permits all scraping of publicly available data, I am free to do so. I will like to thank the www.howlongtobeat.com website for maintaining such a fantastic website and also allowing free scraping of their data.
 
-The end results are  csv files in [data/raw](data/raw). The important ones (for next stage) are: all_game.csv, all_play.csv and all_user.csv. The all_game.csv contains all information related to each such as developer and release dates. The all_user.csv contains all user information (including gender, age and locaitons) while the all_play.csv contains user-provided gameplay information (like playtimes, ratings and platforms).
+The end results are  csv files in [data/raw](data/raw). The important ones (for next stage) are: [all_game.csv](data/raw/all_game.csv), [all_play.csv](data/raw/all_play.csv) and [all_user.csv](data/raw/all_usercsv). The [all_game.csv](data/raw/all_game.csv) file contains all information related to each such as developer and release dates. Meanwhile, the [all_user.csv](data/raw/all_user.csv) file contains all user information (including gender, age and locaitons) while the [all_play.csv](data/raw/all_play.csv) file contains user-provided gameplay information (like playtimes, ratings and platforms).
 
 For more details on this process, please refer to the [documentation](docs/get_data.md).
 
