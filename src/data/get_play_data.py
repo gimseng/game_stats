@@ -10,6 +10,7 @@ import random
 #pd.set_option('display.width', 100)
 
 SAVE_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/raw/'
+INTERIM_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/interim/'
 
 all_game_df = pd.DataFrame()
 count = 1
@@ -17,7 +18,7 @@ count = 1
 start_time = datetime.datetime.now()
 
 
-list_game_df = pd.read_pickle(SAVE_FILE_PATH+"list_game_url.pkl")
+list_game_df = pd.read_pickle(INTERIM_FILE_PATH+"list_game_url.pkl")
 list_game_url = list_game_df.values.tolist()
 
 dim = len(list_game_url)

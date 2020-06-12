@@ -6,7 +6,7 @@ import datetime
 def get_game_list():
         
     BASE_URL = 'https://howlongtobeat.com/'
-    SAVE_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/raw/'
+    SAVE_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/interim/'
     game_name=""
 
     headers = {

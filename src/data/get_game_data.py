@@ -10,6 +10,7 @@ import random
 #pd.set_option('display.width', 100)
 
 SAVE_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/raw/'
+SAVE_INTERIM_FILE_PATH = '/Users/gng/Google Drive/my own projects/gaming/game_stats/data/interim/'
 
 all_game_df = pd.DataFrame()
 count = 1
@@ -17,7 +18,7 @@ count = 1
 start_time = datetime.datetime.now()
 
 
-list_game_df = pd.read_pickle(SAVE_FILE_PATH+"list_game_url.pkl")
+list_game_df = pd.read_pickle(SAVE_INTERIM_FILE_PATH+"list_game_url.pkl")
 list_game_url = list_game_df.values.tolist()
 
 dim = len(list_game_url)
@@ -152,7 +153,7 @@ all_game_df.reset_index(inplace=True, drop=True)
 print(datetime.datetime.now().strftime("%Y-%m-%d, %H:%M"), ": DONE !")
 
 
-all_game_df.to_csv(SAVE_FILE_PATH+'all_game_df.csv', sep=',')
-all_game_df.to_pickle(SAVE_FILE_PATH+'all_game_df.pkl')
+all_game_df.to_csv(SAVE_FILE_PATH+'all_game.csv', sep=',')
+all_game_df.to_pickle(SAVE_FILE_PATH+'all_game.pkl')
 
 # some games are not "beatable". Note: this game has been flagged as sports/unbeatable. Some statistics will be combined.
