@@ -4,13 +4,17 @@ Welcome to my gameplay data analysis project (which I call game_stats). In this 
 
 ## Strategy
 <!--, Big Picture/Project Motivation, Problem Statement and Project Goals-->
-The video game industry generates sales of > US$100 billion annually. It is perhaps one of the most important player in the entertainment sector. Therefore, leveraging data analytics to understand gamer behavior and spending trends is an important strategy to pursue. In this project, I will like to obtain, explore and build predictive models based on gamer playtime and rating. I will focus on consoles and PC gamers which traditional make up most of the gamers, though mobile gamers are definitely important for the future of gaming.
+The video game industry generates sales of > US$100 billion annually. It is perhaps one of the most important player in the entertainment sector. Therefore, leveraging data analytics to understand gamer behavior and spending trends is an important strategy to pursue. In this project, I will like to obtain, explore and build predictive models based on gamer playtime and rating. I will focus on consoles and PC gamers which traditional make up most of the gamers, though mobile gamers are definitely important for the future of gaming. The goals will be to provide clean data that are relevant for the following two big questions: Can we cluster gamers into different groups? Are there meaningful relationships between playtime, rating and sale numbers? Following these two big questions, here are more concrete and actionable questions which hopefully will be answerable in some manners in our project:
 
-1. Define the business objectives and gameplans.
-2. How will my solution be used?
-3. Current solution?
-4. Performance measure? 
-5. Assumptions?
+Do longer time provide more fun experience? Is this dependent on gender? My initial idea is for some games (like action adventure), as long as the quality (for e.g. a good story) is high, a shorter gameplay might be sufficient as long as it is an overall quality experience. For genres which focus on good gameplay mechanics, perhaps a longer playtime will be fun too. Games like Rocketleague, Minecraft or FIFA are simply more fun the more you play ! Uncovering this type of intuitions in the data through rigorous analysis will be enlightening.
+
+We sometimes see developer ‘pad’ gameplay with somewhat unimpressive contents to artificially prolong gameplay time. Is this something that we can make quantitative in our data? What develovoper studios do this a lot? Can we cluster them? Ifthe presenet data are not sufficient, where else can we supplement our data to be able to explore such questions. The impact will then help developers to avoid doing so, since it might also affect future sales (which is another question we might explore in our project).
+
+How about gameplay fatigue? For each genre of video game, how long do people typically play before they quit or dislike the games? How to propose a quantitative measure and quantitatively answer this question is something which will be useful for game design as well.
+
+Lastly, is there a meaningful way to cluster players based on playtime and perhaps rating? Could this provide a predictive machine learning model? Such a model could then be used for developers when they want to compare a certain playtime profile with another to decide how to proceed with their game development. If we want, we could provide a supervised machine learning model where the predictor / label is the rating of a game, while playtime profile and cluster label can be used as features to predict user rating. Needless to say, clustering gamers will be useful for ads-targetting as well as sale strategy.
+
+
 
 ## Get Data
 
