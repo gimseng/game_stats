@@ -16,7 +16,7 @@ Since the robots.txt of the website permits all scraping of publicly available d
 
 The end results are  csv files in [data/raw](data/raw). The important ones (for next stage) are: all_game.csv, all_play.csv and all_user.csv. The all_game.csv contains all information related to each such as developer and release dates. The all_user.csv contains all user information (including gender, age and locaitons) while the all_play.csv contains user-provided gameplay information (like playtimes, ratings and platforms).
 
-For more
+For more details on this process, please refer to the [documentation](docs/get_data.md).
 
 
 ## Explore Data 
