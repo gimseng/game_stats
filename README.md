@@ -1,8 +1,11 @@
 # game_stats
 
-Welcome to my gameplay data analysis project (which I call game_stats). In this project, we will be doing an end-to-end data science project, involving perhaps a few data engineering/machine learning modeling task. I am structuring the project in the following ways. I provide a quick summary for some parts, with further documentations (linked when needed) in the docs folder for further technical details.
+Welcome to my gameplay data analysis project (which I call game_stats). In this project, I will be doing an end-to-end data science project, involving perhaps a few data engineering/machine learning modeling task. I am structuring the project in the following ways. I provide a quick summary for some parts, with further documentations (linked when needed) in the docs folder for further technical details.
 
-## Strategy, Big Picture/Project Motivation, Problem Statement and Project Goals
+## Strategy
+<!--, Big Picture/Project Motivation, Problem Statement and Project Goals-->
+The video game industry generates sales of > US$100 billion annually. It is perhaps one of the most important player in the entertainment sector. Therefore, leveraging data analytics to understand gamer behavior and spending trends is an important strategy to pursue. In this project, I will like to obtain, explore and build predictive models based on gamer playtime and rating. I will focus on consoles and PC gamers which traditional make up most of the gamers, though mobile gamers are definitely important for the future of gaming.
+
 1. Define the business objectives and gameplans.
 2. How will my solution be used?
 3. Current solution?
