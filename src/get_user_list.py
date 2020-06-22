@@ -59,15 +59,9 @@ for page_id in page_range:
         user_item_list = soup.select('div.search_list_image>a')
         
         for user_item in user_item_list:
-            #print(game,'\n\n')
             user_name = user_item.get('title')
-
             user_link = BASE_URL+user_item.get('href')
             list_user_url.append(user_link)
-            #print(user_name,":",user_link)
-    #else:
-    #    print(r.status_code)
-
 
 print(datetime.datetime.now(), ": Game URLs writing to list_user_url.csv ...")
 
