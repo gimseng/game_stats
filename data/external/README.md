@@ -7,4 +7,4 @@ From https://www.kaggle.com/sidtwr/videogames-sales-dataset:
 * `*GamesSales*.csv`
 
 From https://www.kaggle.com/ashaheedq/video-games-sales-2019:
-*`vgsales*.csv`: 
+* `vgsales*.csv`
